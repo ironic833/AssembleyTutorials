@@ -1,0 +1,39 @@
+
+xor null preserving encoding
+
+proc john
+	push edp
+	mov ebp, esp	
+	push esi
+	mov ecx,edi
+	
+LoopStart:
+	mov bl, [ecx]
+	mov al, [esi]
+	cmp al,0
+	je DONE
+	cmp bl,0
+	jne encode
+	mov ecx, edi
+	mov bl, [ecx]
+	
+encode:
+	cmp al,bl
+	je skip
+	xor al,bl
+	mov [esi],al
+	
+skip:
+	inc esi
+	inc ecx
+	jmp LoopStart
+
+Done:
+	pop esi
+	pop ebp
+	ret
+
+	
+
+	
+	
